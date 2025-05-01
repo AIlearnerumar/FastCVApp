@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenCV FastAPI Tool</title>
+</head>
+<body>
+    <h2>Upload Image for Processing</h2>
+    <form method="post" action="/process" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required><br><br>
+        <label for="operation">Choose an operation:</label>
+        <select name="operation">
+            <option value="gaussian">Gaussian Filter</option>
+            <option value="median">Median Filter</option>
+            <option value="bilateral">Bilateral Filter</option>
+            <option value="canny">Canny Edge Detection</option>
+            <option value="sobel">Sobel Edge Detection</option>
+        </select><br><br>
+        <button type="submit">Process Image</button>
+    </form>
+
+    {% if image_url %}
+        <h3>Result ({{ operation }})</h3>
+        <img src="{{ image_url }}" width="512">
+        <p><a href="{{ image_url }}" download>Download Result</a></p>
+    {% endif %}
+</body>
+</html>
